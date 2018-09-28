@@ -15,7 +15,7 @@ int main () {
   if ((t >= 1) && (t <= 10)) {
     for (int i = 0; i < t; i++) {
       cin >> S;
-      if ((S.length() > = 2) && (S.length() <= 1000)) {
+      if ((S.length() > = 2) && (S.length() <= 10000)) {
       
         for (index = 0; index < S.length(); index++) { // even indices
           if (index%2 == 0) {
