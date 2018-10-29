@@ -1,27 +1,45 @@
-#include <map>
-#include <string>
 #include <cmath>
-#include <cstudio>
+#include <cstdio>
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <map>
 
-using namespace;
+using namespace std;
 
 int main() {
-  int noQueries, phoneNum;
-  std::string name;
+  int noQueries;
+  long phoneNum;
   
-  cin >> noQueries;
+  string name, query;
+  map <string, long>::iterator itDictionary;
+    
+  cin >> noEntries;
   cin.ignore(numeric_limits<streamsize>::max(), '\n');
   
-  std::map <string, long> phoneBook;
+  map <string, long> phoneBook;
   
-  if ((noQueries >= 1) && (noQueries <= 100000)) {
-    cin >> name;
-    cin >> phoneNum;
+  if ((noEntries >= 1) && (noEntries <= 10000)) {
+        for (int i = 1; i <= noEntries; i++) {
+            cin >> name;
+            cin >> phoneNum;
+            
+            phoneBook[name] = phoneNum;
+        } // capture input until exceeds noEntries; first input integer
     
-    phoneBook[name] = phoneNum;
-    
+        for (auto &it : phoneBook) {
+          cin >> query;     
+          itDictionary = phoneBook.find(query); // if found, returns an iterator to the element
+                
+          if (itDictionary != phoneBook.end()) { // if not found, returns map::end()
+              cout << itDictionary->first << "=" << itDictionary->second << endl;
+          } else {
+              cout << "Not found" << endl;
+          } 
+        } // iterating through the map data structure phoneBook
+        
+    } // end of if (...) checking successful range of noEntries
   
-  
+  return 0;
+}
+   
