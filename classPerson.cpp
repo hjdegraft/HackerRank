@@ -23,6 +23,7 @@ class Person{
 
 class Student :  public Person{
 	private:
+    
 		vector<int> testScores;  
 	public:
         /*	
@@ -34,15 +35,50 @@ class Student :  public Person{
         *   id - An integer denoting the Person's ID number.
         *   scores - An array of integers denoting the Person's test scores.
         */
-        // Write your constructor here
+    
+        Student(
+            string firstName, string lastName, int id, vector<int> scores
+        	):Person(firstName, lastName, id) // since only the base has access to its protected memebers
+        {
+            firstName = firstName; // set the base's protected members to vars called via the derived constructor
+            lastName = lastName;
+            id = id; 
+            
+            testScores = scores;
+        }
 
         /*	
         *   Function Name: calculate
         *   Return: A character denoting the grade.
         */
-        // Write your function here
+        char calculate () {
+            int sum = 0;
+            int average;
+            char grade;
+            
+            for (int i = 0; i < testScores.size(); i++) {
+                sum = testScores[i]+sum;
+            }
+  
+            average = sum/testScores.size();
+            
+            if (average < 40) {
+                grade = 'T';
+            } else if ((average >= 40) && (average < 55)){
+                grade = 'D';
+            } else if ((average >= 55) && (average < 70)) {
+                grade = 'P';
+            } else if ((average >= 70) && (average < 80)) {
+                grade = 'A';
+            } else if ((average >= 80) && (average < 90)) {
+                grade = 'E';
+            } else if ((average >= 90) && (average <= 100)) {
+                grade = 'O';
+            }
+            
+            return grade;
+        }
 };
-
 int main() {
 	string firstName;
   	string lastName;
