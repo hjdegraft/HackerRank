@@ -18,24 +18,25 @@ class Book{
 
 };
 
-// Write your MyBook class here
-
-    //   Class Constructor
-    //   
-    //   Parameters:
-    //   title - The book's title.
-    //   author - The book's author.
-    //   price - The book's price.
-    //
-    // Write your constructor here
+class MyBook : public Book {
+        public: // since do not have some methods that access this var, only a disply() that prints
+            int priceOfBook; 
     
+            MyBook(string title, string author, int price):
+            Book(title, author) 
+            {
+                title = title;
+                author = author;
+            
+                priceOfBook = price;
+            }
     
-    //   Function Name: display
-    //   Print the title, author, and price in the specified format.
-    //
-    // Write your method here
-    
-// End class
+            void display() {
+                cout << "Title: " << title << endl;
+                cout << "Author: " << author << endl;
+                cout << "Price: " << priceOfBook << endl;
+            }
+}; 
 
 int main() {
     string title,author;
