@@ -33,12 +33,42 @@ class Solution{
            return root;
            }
         }
-        
-    void levelOrder(Node * root){
-    //Write your code here
-  	
-  
-	  }
+        void printGivenLevel(Node* root, int level) { 
+            if (root == NULL) 
+                return; 
+            if (level == 1) 
+                cout << root->data << " ";
+            else if (level > 1) 
+            { 
+             printGivenLevel(root->left, level-1); 
+                printGivenLevel(root->right, level-1); 
+            } 
+        }
+
+        int lftHeight = 0;
+        int rghtHeight = 0;
+        int height = 0;
+
+        int getHeight(Node* root){
+            if (root == NULL) {
+                return height;
+            } else {
+                lftHeight = getHeight(root->left);
+                rghtHeight = getHeight(root->right);         
+            
+                if (lftHeight > rghtHeight) 
+                    return lftHeight+1;
+                else
+                    return rghtHeight+1;
+            }
+        }
+
+        void levelOrder(Node * root){
+            int h = getHeight(root); 
+            int i; 
+            for (i=1; i<=h; i++) 
+                printGivenLevel(root, i);
+        }
     
 };//End of Solution
 
