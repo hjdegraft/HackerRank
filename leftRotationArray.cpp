@@ -3,8 +3,8 @@
 using namespace std;
 
 vector<string> split_string(string);
-
-
+void leftRotatebyOne(vector<int>, int);
+void leftRotate(vector<int>, int);
 
 int main()
 {
@@ -29,7 +29,36 @@ int main()
 
         a[i] = a_item;
     }
+    
+/***************
+** Steps 1-3
+** 
+** 1. Store d elements in a temporary array
+** 2. Shift rest of the original array; after d elements, move those
+**    values up to the front of the array, leaving elements after d alone
+** 3. Store back the temporary array elements to replace the unchanged 
+**    elements
+*/
 
+    vector<int> temp(d);
+    int temp_count = 0;
+
+    for (int index = 0; index < d; index++) {
+        temp[index] = a[index];
+    }
+
+    for (int j = 0; j < (n-d); j++) {
+        a[j] = a[j+d];
+    }
+
+    for (int k = (n-d); k < n; k++) {
+        a[k] = temp[temp_count];
+        temp_count++;
+    }
+
+    for (int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    } 
     return 0;
 }
 
