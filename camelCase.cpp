@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the camelcase function below.
+int camelcase(string s) {
+    int noWords = 1;
+    char word;
+
+    for (int i = 0; i < s.length(); i++){
+        word = s[i];
+
+        if (isupper(word))
+            noWords++;
+    }
+
+    return noWords;
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string s;
+    getline(cin, s);
+
+    int result = camelcase(s);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
